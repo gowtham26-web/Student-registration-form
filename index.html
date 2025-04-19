@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+
+    <style>
+        body {
+            background-color:#BFD3D6;
+            width: 100%;
+            margin-left: 40px;
+
+        }
+
+        body h1 {
+            margin-top: 6%;
+            margin-left: 38%;
+            font-family: sans-serif;
+            font-style: italic;
+            margin-bottom: -50px;
+        }
+
+        .form {
+            background-color: white;
+            width: 350px;
+            border-radius: 5px;
+            padding: 20px;
+            margin-top: 6%;
+            margin-left: 35%;
+            font-family: sans-serif;
+            font-size: large;
+            font-style: italic;
+
+        }
+
+        @media screen and (max-width:600px) {
+            .form {
+                margin-left: 20%;
+                margin-top: 19%;
+            }
+
+            body h1 {
+                margin-top: 20%;
+                margin-left: 27%;
+            }
+        }
+
+        .form input {
+            width: 100%;
+            height: 20px;
+    border-color: gray;
+    border-radius: 5px;
+        }
+        .form input:hover{
+            cursor: pointer;
+            background-color: aliceblue;
+            
+        }
+
+        .form button {
+            width: 100%;
+            height: 20px;
+            background-color: red;
+            border: 1px
+            font-family: sans-serif;
+            font-style: italic;
+        
+        }
+
+        #names,
+        #mail,
+        #pw {
+            padding-left: 0;
+        }
+
+        #nameerror,
+        #mailerror,
+        #pwerror {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 style="text-decoration: underline; text-shadow: #0A0000;">Registration Form</h1>
+    <form class="form">
+        <table>
+            <div>
+                <label for="names"><strong>Name:</strong></label><br>
+                <input type="text" id="names">
+                <p id="nameerror"></p>
+            </div>
+            <div>
+                <label for="mail"><strong>EMail:</strong></label><br>
+                <input type="text" id="mail">
+                <p id="mailerror"></p>
+            </div>
+            <div>
+                <label for="pw"><strong>Password:</strong></label><br>
+                <input type="password" id="pw">
+                <p id="pwerror"></p>
+            </div>
+            <div>
+                <button type="submit" id="btn">Submit</button>
+            </div>
+        </table>
+    </form>
+
+
+
+    <script>
+        var names = document.getElementById("names")
+        var mail = document.getElementById("mail")
+        var pw = document.getElementById("pw")
+        var btn = document.getElementById("btn")
+
+        var nameerror = document.getElementById("nameerror")
+        var mailerror = document.getElementById("mailerror")
+        var pwerror = document.getElementById("pwerror")
+
+
+
+        names.addEventListener("input", function () {
+
+            if (names.value.trim() === "") {
+                nameerror.textContent = "Name is required"
+            }
+            else {
+                nameerror.textContent = ""
+            }
+            checkallfields();
+        });
+
+
+        mail.addEventListener("input", function () {
+            var mailvalue = mail.value
+            if (mailvalue.includes("@") && mailvalue.includes(".com")) {
+                mailerror.textContent = ""
+            }
+            else {
+                mailerror.textContent = "Enter a valid Email address"
+            }
+            checkallfields();
+        });
+
+        pw.addEventListener("input", function () {
+            var pwvalue = pw.value
+            if (pwvalue.length < 6) {
+                pwerror.textContent = "Password must be contain atleast 6 characters"
+            }
+            else {
+                pwerror.textContent = ""
+            }
+            checkallfields();
+        });
+        function checkallfields() {
+            if (
+                names.value.trim() !== "" &&
+                mail.value.includes("@") &&
+                mail.value.includes(".com") &&
+                pw.value.length >= 6
+            ) {
+                btn.disabled = false;
+            }
+            else {
+                btn.disabled = true;
+            }
+        }
+
+
+
+    </script>
+</body>
+
+</html>
